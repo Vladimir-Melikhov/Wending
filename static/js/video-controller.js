@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             overlay.classList.add('visible');
             content.classList.add('visible');
-        }, 50);
+        }, 10);
 
         // 3. Полностью скрыть вступительное видео
         setTimeout(() => {
             introVideo.classList.add('hidden');
-        }, 500);
+        }, 100);
     }
 
     /**
