@@ -152,61 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
-    // ===========================
-    // ЭФФЕКТ НАВЕДЕНИЯ НА КАРТОЧКИ
-    // ===========================
-    
-    const infoCards = document.querySelectorAll('.info-card, .detail-block');
-    
-    infoCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-        });
-    });
-    
-    
-    // ===========================
-    // ПОКАЗАТЬ/СКРЫТЬ КНОПКУ "НАВЕРХ"
-    // ===========================
-    
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '↑';
-    scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        left: 30px;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: rgba(27, 58, 27, 0.9);
-        color: white;
-        border: none;
-        font-size: 2rem;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    `;
-    
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    scrollToTopBtn.addEventListener('mouseenter', function() {
-        this.style.background = 'rgba(44, 85, 48, 0.9)';
-        this.style.transform = 'scale(1.1)';
-    });
-    
-    scrollToTopBtn.addEventListener('mouseleave', function() {
-        this.style.background = 'rgba(27, 58, 27, 0.9)';
-        this.style.transform = 'scale(1)';
-    });
-    
     document.body.appendChild(scrollToTopBtn);
     
     window.addEventListener('scroll', function() {

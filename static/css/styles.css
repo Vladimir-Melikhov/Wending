@@ -30,9 +30,10 @@ body {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    z-index: 1000;
+    z-index: 999;
     opacity: 1;
     transition: opacity 1.5s ease-out;
+    pointer-events: none;
 }
 
 #intro-video.fade-out {
@@ -53,7 +54,7 @@ body {
     object-fit: cover;
     z-index: 1;
     opacity: 0;
-    transition: opacity 1.5s ease-in;
+    transition: opacity 0.5s ease-in;
 }
 
 #background-video.visible {
@@ -77,7 +78,7 @@ body {
     );
     z-index: 2;
     opacity: 0;
-    transition: opacity 1.5s ease-in;
+    transition: opacity 0.5s ease-in;
     pointer-events: none;
 }
 
@@ -144,36 +145,35 @@ p {
     justify-content: center;
     text-align: center;
     padding: 80px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1500;
-    pointer-events: none;
-}
-
-.hero-section > * {
-    pointer-events: auto;
+    position: relative;
+    z-index: 1001;
 }
 
 .names {
     font-family: 'Great Vibes', cursive;
     font-size: 5rem;
-    color: #1B3A1B;
+    color: #FFB6C1;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
     opacity: 0;
-    animation: appearNames 1.5s ease-out 1s forwards;
+    animation: appearNamesSmooth 2s ease-out 0.97s forwards;
 }
 
-@keyframes appearNames {
+@keyframes appearNamesSmooth {
     0% {
         opacity: 0;
-        transform: translateY(30px) scale(0.9);
+        transform: translateY(20px);
+        color: #FFB6C1;
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(0);
+        color: #FFB6C1;
     }
     100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
+        color: #1B3A1B;
     }
 }
 
@@ -214,6 +214,7 @@ p {
 .event-info {
     padding: 100px 20px;
     text-align: center;
+    margin-top: 50vh;
 }
 
 .section-title {
