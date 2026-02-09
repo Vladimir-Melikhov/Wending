@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    z-index: 1001;
+                    z-index: 10000;
                     padding: 20px 50px;
                     font-size: 1.5rem;
                     background: #1B3A1B;
