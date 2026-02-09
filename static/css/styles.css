@@ -1,0 +1,828 @@
+/* ===========================
+   ОБЩИЕ СТИЛИ И СБРОС
+   =========================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #556B2F;
+    overflow-x: hidden;
+    background: #000;
+}
+
+/* ===========================
+   ВИДЕО ЭЛЕМЕНТЫ
+   =========================== */
+
+/* Видео 1 - Вступительное */
+#intro-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+#intro-video.fade-out {
+    opacity: 0;
+}
+
+#intro-video.hidden {
+    display: none;
+}
+
+/* Видео 2 - Фоновое */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.75s ease-in;
+}
+
+#background-video.visible {
+    opacity: 1;
+}
+
+/* ===========================
+   ОВЕРЛЕЙ (Нежно-розовая пелена)
+   =========================== */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 229, 229, 0.8) 0%,
+        rgba(255, 240, 245, 0.8) 50%,
+        rgba(255, 228, 225, 0.85) 100%
+    );
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.75s ease-in;
+    pointer-events: none;
+}
+
+#overlay.visible {
+    opacity: 1;
+}
+
+/* ===========================
+   КОНТЕНТ
+   =========================== */
+#content {
+    position: relative;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.75s ease-in 0.15s;
+}
+
+#content.visible {
+    opacity: 1;
+}
+
+#content.visible .hero-section {
+    position: relative;
+    z-index: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===========================
+   ТИПОГРАФИЯ
+   =========================== */
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+}
+
+h1 {
+    color: #1B3A1B;
+}
+
+h2 {
+    color: #2C5530;
+}
+
+h3 {
+    color: #1B3A1B;
+}
+
+p {
+    color: #1B3A1B;
+    line-height: 1.8;
+}
+
+/* ===========================
+   СЕКЦИЯ 1: ЗАГОЛОВОК (HERO)
+   =========================== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    pointer-events: none;
+}
+
+.hero-section > * {
+    pointer-events: auto;
+}
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem;
+    color: #1B3A1B;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    animation: writeNames 3s ease-out forwards;
+}
+
+@keyframes writeNames {
+    0% {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+    }
+    100% {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+.romantic-phrase {
+    font-size: 1.5rem;
+    color: #2C5530;
+    font-weight: 300;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    animation: fadeInUp 1s ease-out 0.2s;
+    animation-fill-mode: both;
+}
+
+.wedding-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-family: 'Playfair Display', serif;
+    animation: fadeInUp 1s ease-out 0.4s;
+    animation-fill-mode: both;
+}
+
+.date-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1B3A1B;
+}
+
+.date-month {
+    font-size: 2.5rem;
+    color: #2C5530;
+}
+
+.date-year {
+    font-size: 2.5rem;
+    color: #1B3A1B;
+}
+
+.date-divider {
+    font-size: 2rem;
+    color: #2C5530;
+}
+
+/* ===========================
+   СЕКЦИЯ 2: ИНФОРМАЦИЯ
+   =========================== */
+.event-info {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    color: #1B3A1B;
+    text-align: center;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 60px 50px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(27, 58, 27, 0.1);
+    box-shadow: 0 8px 32px rgba(27, 58, 27, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1B3A1B, transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(27, 58, 27, 0.12);
+    border-color: rgba(27, 58, 27, 0.2);
+}
+
+.info-card:hover::before {
+    opacity: 1;
+}
+
+.info-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.info-icon svg {
+    filter: drop-shadow(0 4px 8px rgba(27, 58, 27, 0.15));
+    transition: all 0.4s ease;
+}
+
+.info-card:hover .info-icon svg {
+    filter: drop-shadow(0 6px 12px rgba(27, 58, 27, 0.25));
+    transform: scale(1.05);
+}
+
+.info-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(27, 58, 27, 0.3), transparent);
+    opacity: 0.6;
+}
+
+.info-card h3 {
+    font-size: 2rem;
+    color: #1B3A1B;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.info-detail {
+    font-size: 1.3rem;
+    color: #1B3A1B;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.info-time {
+    font-size: 1.2rem;
+    color: #2C5530;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.info-address {
+    font-size: 1.1rem;
+    color: #2C5530;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.map-link {
+    display: inline-block;
+    color: #1B3A1B;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 32px;
+    border: 2px solid rgba(27, 58, 27, 0.3);
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(27, 58, 27, 0.08);
+    letter-spacing: 0.5px;
+}
+
+.map-link:hover {
+    background: #1B3A1B;
+    color: white;
+    border-color: #1B3A1B;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(27, 58, 27, 0.2);
+}
+
+/* Цветовая палитра для дресс-кода */
+.dress-code-label {
+    font-size: 1rem;
+    color: #2C5530;
+    margin-top: 15px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.color-palette {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.color-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+}
+
+.color-circle::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.color-circle:hover {
+    transform: scale(1.2) translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 3px rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.color-circle:hover::before {
+    opacity: 1;
+}
+
+/* ===========================
+   СЕКЦИЯ 4: ПРОГРАММА
+   =========================== */
+.program-section {
+    padding: 100px 20px 120px 20px;
+}
+
+/* Счетчик дней */
+.countdown {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.countdown h3 {
+    font-size: 2rem;
+    color: #1B3A1B;
+    margin-bottom: 30px;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 20px;
+    padding: 30px 40px;
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 8px 24px rgba(27, 58, 27, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.countdown-item:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 
+        0 12px 32px rgba(27, 58, 27, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+
+.countdown-value {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1B3A1B;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.countdown-label {
+    display: block;
+    font-size: 1rem;
+    color: #2C5530;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #2C5530, #1B3A1B);
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1B3A1B;
+    border: 4px solid rgba(255, 240, 245, 0.9);
+    z-index: 1;
+}
+
+.timeline-time {
+    flex: 0 0 45%;
+    text-align: right;
+    padding-right: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1B3A1B;
+    font-family: 'Playfair Display', serif;
+}
+
+.timeline-content {
+    flex: 0 0 45%;
+    padding-left: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 100%);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 20px;
+    padding: 25px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 4px 20px rgba(27, 58, 27, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.4s ease;
+}
+
+.timeline-content:hover {
+    box-shadow: 
+        0 8px 28px rgba(27, 58, 27, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateX(6px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+
+.timeline-content h4 {
+    font-size: 1.4rem;
+    color: #1B3A1B;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.3px;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    color: #2C5530;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* ===========================
+   СЕКЦИЯ RSVP
+   =========================== */
+.rsvp-section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.rsvp-text {
+    font-size: 1.3rem;
+    color: #1B3A1B;
+    margin-bottom: 40px;
+}
+
+.rsvp-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.btn {
+    padding: 18px 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: #1B3A1B;
+    color: white;
+    box-shadow: 0 5px 15px rgba(27, 58, 27, 0.3);
+}
+
+.btn-primary:hover {
+    background: #2C5530;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(27, 58, 27, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.85);
+    color: #1B3A1B;
+    border: 2px solid #1B3A1B;
+}
+
+.btn-secondary:hover {
+    background: rgba(27, 58, 27, 0.1);
+    transform: translateY(-3px);
+}
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    color: #1B3A1B;
+    margin-bottom: 10px;
+}
+
+.contact-link {
+    font-size: 1.3rem;
+    color: #1B3A1B;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #2C5530;
+}
+
+/* ===========================
+   ФУТЕР
+   =========================== */
+.footer {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 1.3rem;
+    color: #2C5530;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-heart {
+    font-size: 2.5rem;
+    color: #1B3A1B;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* ===========================
+   АНИМАЦИИ
+   =========================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Fade-in секции при скролле */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===========================
+   АДАПТИВНОСТЬ
+   =========================== */
+
+/* Планшеты */
+@media (max-width: 768px) {
+    .names {
+        font-size: 3.5rem;
+    }
+
+    .romantic-phrase {
+        font-size: 1.2rem;
+    }
+
+    .wedding-date {
+        flex-wrap: wrap;
+    }
+
+    .date-number,
+    .date-month,
+    .date-year {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 70px;
+    }
+
+    .timeline-item::before {
+        left: 30px;
+    }
+
+    .timeline-time {
+        text-align: left;
+        padding: 0;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+    }
+
+    .timeline-content {
+        padding-left: 20px;
+        width: 100%;
+    }
+
+    .countdown-timer {
+        gap: 15px;
+    }
+
+    .countdown-item {
+        padding: 20px 25px;
+        min-width: 100px;
+    }
+
+    .countdown-value {
+        font-size: 2.5rem;
+    }
+}
+
+/* Мобильные */
+@media (max-width: 480px) {
+    .names {
+        font-size: 2.5rem;
+    }
+
+    .romantic-phrase {
+        font-size: 1rem;
+    }
+
+    .date-number,
+    .date-month,
+    .date-year {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .info-card,
+    .detail-block {
+        padding: 30px 20px;
+    }
+
+    .info-icon,
+    .detail-icon {
+        font-size: 3rem;
+    }
+
+    .info-card h3,
+    .detail-block h3 {
+        font-size: 1.5rem;
+    }
+
+    .countdown-item {
+        padding: 15px 20px;
+        min-width: 80px;
+    }
+
+    .countdown-value {
+        font-size: 2rem;
+    }
+
+    .countdown-label {
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+
+    .rsvp-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
