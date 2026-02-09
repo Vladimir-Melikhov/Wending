@@ -3,195 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Приглашение на свадьбу">
-    <title>Приглашение на свадьбу</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Libi & Denny</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            animation: fadeInBackground 1s ease-in-out 1.5s forwards;
+            z-index: -1;
+        }
+
+        .title {
+            font-size: 5rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            position: relative;
+            z-index: 10;
+        }
+
+        .name {
+            display: inline-block;
+            opacity: 0;
+            color: #ff69b4;
+            animation: appearAndChangeColor 2s ease-in-out forwards;
+        }
+
+        .name.libi {
+            animation-delay: 0s;
+        }
+
+        .ampersand {
+            display: inline-block;
+            margin: 0 0.3em;
+            opacity: 0;
+            color: #ff69b4;
+            animation: appearAndChangeColor 2s ease-in-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .name.denny {
+            animation-delay: 1s;
+        }
+
+        @keyframes appearAndChangeColor {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+                color: #ff69b4;
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(0);
+                color: #ff69b4;
+            }
+            70% {
+                color: #ff69b4;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                color: #ffffff;
+            }
+        }
+
+        @keyframes fadeInBackground {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Видео 1 - Вступительное -->
-    <video id="intro-video" autoplay muted playsinline>
-        <source src="{{ url_for('static', filename='videos/intro.mp4') }}" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-    </video>
-
-    <!-- Видео 2 - Фоновое (зацикленное) -->
-    <video id="background-video" loop muted playsinline>
-        <source src="{{ url_for('static', filename='videos/background.mp4') }}" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-    </video>
-
-    <!-- Нежно-розовая пелена -->
-    <div id="overlay"></div>
-
-    <!-- Основной контент -->
-    <div id="content">
-        <!-- Секция 1: Заголовок -->
-        <section class="hero-section">
-            <div class="container">
-                <h1 class="names">Анна & Дмитрий</h1>
-                <div class="wedding-date">
-                    <span class="date-number">15</span>
-                    <span class="date-divider">•</span>
-                    <span class="date-month">Июня</span>
-                    <span class="date-divider">•</span>
-                    <span class="date-year">2026</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Секция 2: Информация о мероприятии -->
-        <section class="event-info fade-in-section">
-            <div class="container">
-                <h2 class="section-title">Информация о торжестве</h2>
-                
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1B3A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                    </div>
-                    <h3>Дата и время</h3>
-                    <p class="info-detail">15 июня 2026 года</p>
-                    <p class="info-time">Начало в 16:00</p>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1B3A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Место проведения</h3>
-                    <p class="info-detail">Загородный комплекс "Усадьба"</p>
-                    <p class="info-address">г. Москва, Рублёво-Успенское шоссе, 45</p>
-                    <a href="#" class="map-link">Посмотреть на карте</a>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1B3A1B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="8.5" cy="7" r="4"></circle>
-                            <line x1="20" y1="8" x2="20" y2="14"></line>
-                            <line x1="23" y1="11" x2="17" y2="11"></line>
-                        </svg>
-                    </div>
-                    <h3>Дресс-код</h3>
-                    <p class="info-detail">Классический стиль</p>
-                    <p class="dress-code-label">Цветовая палитра:</p>
-                    <div class="color-palette">
-                        <div class="color-circle" style="background: #FFE4E1;" title="Нежно-розовый"></div>
-                        <div class="color-circle" style="background: #FFC0CB;" title="Розовый"></div>
-                        <div class="color-circle" style="background: #FFDAB9;" title="Персиковый"></div>
-                        <div class="color-circle" style="background: #FFB6C1;" title="Светло-розовый"></div>
-                        <div class="color-circle" style="background: #FADADD;" title="Пудровый"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Секция 3: Детали -->
-        <section class="details-section fade-in-section">
-            <div class="container">
-                <!-- Пустая секция или удалена -->
-            </div>
-        </section>
-
-        <!-- Секция 4: Программа дня -->
-        <section class="program-section fade-in-section">
-            <div class="container">
-                <h2 class="section-title">Программа торжества</h2>
-                
-                <!-- Счетчик дней -->
-                <div class="countdown">
-                    <h3>До самого важного дня осталось:</h3>
-                    <div class="countdown-timer">
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="days">00</span>
-                            <span class="countdown-label">дней</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="hours">00</span>
-                            <span class="countdown-label">часов</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="minutes">00</span>
-                            <span class="countdown-label">минут</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-value" id="seconds">00</span>
-                            <span class="countdown-label">секунд</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline -->
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">16:00</div>
-                        <div class="timeline-content">
-                            <h4>Встреча гостей</h4>
-                            <p>Приветственные напитки и фуршет</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-time">17:00</div>
-                        <div class="timeline-content">
-                            <h4>Выездная церемония</h4>
-                            <p>Торжественное бракосочетание</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-time">18:00</div>
-                        <div class="timeline-content">
-                            <h4>Праздничный банкет</h4>
-                            <p>Ужин, поздравления и развлечения</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-time">20:00</div>
-                        <div class="timeline-content">
-                            <h4>Первый танец</h4>
-                            <p>Открытие танцевального вечера</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-time">21:00</div>
-                        <div class="timeline-content">
-                            <h4>Торт и сюрпризы</h4>
-                            <p>Свадебный торт и особенные моменты</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-time">23:00</div>
-                        <div class="timeline-content">
-                            <h4>Танцы до утра</h4>
-                            <p>Веселье продолжается!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="background"></div>
+    <div class="container">
+        <h1 class="title">
+            <span class="name libi">Libi</span><span class="ampersand">&</span><span class="name denny">Denny</span>
+        </h1>
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ url_for('static', filename='js/video-controller.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/scroll-effects.js') }}"></script>
 </body>
 </html>

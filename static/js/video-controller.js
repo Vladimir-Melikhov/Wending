@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             overlay.classList.add('visible');
             content.classList.add('visible');
-        }, 10);
+        }, 100);
 
-        // 3. Полностью скрыть вступительное видео
+        // 3. Полностью скрыть вступительное видео после завершения fade-out
         setTimeout(() => {
             introVideo.classList.add('hidden');
-        }, 100);
+        }, 1600); // 1.5s transition + 100ms задержка
     }
 
     /**
