@@ -25,18 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // 1. Начать fade-out вступительного видео
         introVideo.classList.add('fade-out');
 
-        // 2. Одновременно показать фоновое видео
+        // 2. Одновременно показать фоновое видео и оверлей
         setTimeout(() => {
             backgroundVideo.classList.add('visible');
             backgroundVideo.play().catch(error => {
                 console.error('Ошибка воспроизведения фонового видео:', error);
             });
+            
+            overlay.classList.add('visible');
+            content.classList.add('visible');
         }, 50);
 
         // 3. Полностью скрыть вступительное видео
         setTimeout(() => {
             introVideo.classList.add('hidden');
-        }, 300);
+        }, 500);
     }
 
     /**
