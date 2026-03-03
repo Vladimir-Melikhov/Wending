@@ -1,0 +1,4 @@
+denny-libi.ru, www.denny-libi.ru {
+    reverse_proxy web:5000
+    encode gzip
+}
